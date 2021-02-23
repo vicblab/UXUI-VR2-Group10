@@ -180,12 +180,14 @@ public class OVRGrabber : MonoBehaviour
     {
         // Get the grab trigger
 		OVRGrabbable grabbable = otherCollider.GetComponent<OVRGrabbable>() ?? otherCollider.GetComponentInParent<OVRGrabbable>();
+
         if (grabbable == null) return;
 
         // Add the grabbable
         int refCount = 0;
         m_grabCandidates.TryGetValue(grabbable, out refCount);
         m_grabCandidates[grabbable] = refCount + 1;
+        //Debug.Log("In hand range");
     }
 
     void OnTriggerExit(Collider otherCollider)

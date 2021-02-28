@@ -16,6 +16,11 @@ public class GravityManager : MonoBehaviour
     }
     public void ToggleGravity(bool to)
     {
+        gravityObjects.Clear();
+        foreach (OVRGrabbable grabObj in FindObjectsOfType<OVRGrabbable>())
+        {
+            gravityObjects.Add(grabObj.gameObject.GetComponent<Rigidbody>());
+        }
         gravityOn = to;
         foreach (Rigidbody rb in gravityObjects)
         {

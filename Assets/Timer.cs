@@ -43,10 +43,12 @@ public class Timer : MonoBehaviour
         }
         OnTimerEnd?.Invoke();
         routine = null;
-
+        if (timeText)
+            timeText.text = "Out of time";
     }
     private void UpdateTimeText(float value)
     {
-        timeText.text = $"{value:F1}s";
+        if (timeText)
+            timeText.text = $"{value:F1}s";
     }
 }

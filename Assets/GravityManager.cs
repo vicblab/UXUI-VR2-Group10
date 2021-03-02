@@ -7,6 +7,7 @@ public class GravityManager : MonoBehaviour
 {
     [SerializeField] private List<Rigidbody> gravityObjects = new List<Rigidbody>();
     [SerializeField] private bool gravityOn;
+    [SerializeField] private GameObject walls;
     void Start()
     {
         foreach (OVRGrabbable grabObj in FindObjectsOfType<OVRGrabbable>())
@@ -22,11 +23,27 @@ public class GravityManager : MonoBehaviour
             gravityObjects.Add(grabObj.gameObject.GetComponent<Rigidbody>());
         }
         gravityOn = to;
+
+	
+
         foreach (Rigidbody rb in gravityObjects)
         {
             rb.useGravity = gravityOn;
             rb.isKinematic = !gravityOn;
         }
+    }
+
+    public void ToggleColor(bool to)
+    {
+	if(to)
+	{
+
+
+		walls.SetActive(false);
+	}else{
+		walls.SetActive(true);
+		GetComponent<AudioSource>().Play(0);
+	}
     }
 
 
